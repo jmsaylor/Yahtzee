@@ -19,6 +19,13 @@ public class Dice {
         }
     }
 
+    public void rollAll(int repeat) throws InterruptedException {
+        for (int i = 0; i < repeat; i++) {
+            this.rollAll();
+            Console.showDice(this);
+        }
+    }
+
     public void rollFirst() {
         dice[0].roll();
     }

@@ -4,22 +4,14 @@ public class Main {
 
     public static void main(String[] args) {
 	    Dice dice = new Dice();
+
         try {
-            dice.rollAll();
+            dice.rollAll(4);
+            dice.rollFirst();
+            Console.showDice(dice);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        Console.showDice(dice);
-
-        try {
-            dice.rollMany();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        Console.showDice(dice);
-
 //        Console.showDice(dice);
 //        dice.rollFirst();
 //        Console.showDice(dice);
