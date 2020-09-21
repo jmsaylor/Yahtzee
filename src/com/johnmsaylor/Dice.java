@@ -1,6 +1,7 @@
 package com.johnmsaylor;
 
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Dice {
@@ -12,16 +13,17 @@ public class Dice {
         }
     }
 
-    public void rollAll() throws InterruptedException {
+    public void roll() throws InterruptedException {
         for (Di di : dice) {
             TimeUnit.MILLISECONDS.sleep((long) (Math.random() * 100));
             di.roll();
+
         }
     }
 
-    public void rollAll(int repeat) throws InterruptedException {
+    public void roll(int repeat) throws InterruptedException {
         for (int i = 0; i < repeat; i++) {
-            this.rollAll();
+            this.roll();
             Console.showDice(this);
         }
     }
@@ -35,8 +37,9 @@ public class Dice {
         dice[di].roll();
     }
 
-    public void rollMany() throws InterruptedException {
-        int[] which = Console.reRollPrompt();
+
+    public void roll(List<Integer> which) throws InterruptedException {
+        if (which.get(0) == 0) return;
         for (int di : which) {
             TimeUnit.MILLISECONDS.sleep((long) (Math.random() * 100));
             this.dice[di - 1].roll();
