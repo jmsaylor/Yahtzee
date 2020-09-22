@@ -54,4 +54,10 @@ public class Console {
         }
         return which;
     }
+
+    public static void yahtzee(Player player) {
+        System.out.println("######"+ player.name + "#############");
+        System.out.println("########YAHTZEE!!!#############");
+        System.out.println("#####################");
+    }
 }
