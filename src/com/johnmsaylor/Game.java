@@ -1,9 +1,6 @@
 package com.johnmsaylor;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Game {
@@ -21,6 +18,20 @@ public class Game {
         }
     }
 
+    public void play() {
+        while (true) {
+            turn();
+            Console.showScore(this);
+            var scanner = new Scanner(System.in);
+            Console.out("Another turn? Or, q to quit");
+            String input = scanner.next();
+            if (input.contains("q")) {
+                Console.out("Thanks for playing!");
+                break;
+            }
+        }
+    }
+
     public void turn() {
         for(Player player : players) {
             Console.readyPlayer(player);
@@ -30,7 +41,13 @@ public class Game {
             player.reroll(dice, Console.reRollPrompt());
             checkYahtzee(dice, player);
             Console.showDice(dice);
-            score(dice,player);
+            player.reroll(dice, Console.reRollPrompt());
+            checkYahtzee(dice, player);
+            Console.showDice(dice);
+            int score = Score.calculateScore(dice);
+            Console.out("Your score: " + score);
+            score(player,score);
+
         }
     }
 
@@ -57,11 +74,9 @@ public class Game {
 
     }
 
-    private int score(Dice dice, Player player) {
-        int total = 0;
-        //how to use stream here
-        List<Integer> values = Arrays.stream(dice.dice).map(di -> di.value).collect(Collectors.toList());
-        System.out.println(values.getClass());
-        return total;
+    private void score(Player player, int score) {
+        int temp = gameScore.get(player);
+        int newScore = temp + score;
+        gameScore.put(player, newScore);
     }
 }

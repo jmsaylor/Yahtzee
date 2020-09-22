@@ -29,10 +29,6 @@ public class Console {
         scanner.nextLine();
     }
 
-    public static void gameMenu() {
-
-    }
-
     public static void showDice(Dice current) {
         System.out.println("---DICE--------------");
         System.out.print("    ");
@@ -55,9 +51,24 @@ public class Console {
         return which;
     }
 
+    public static void out(String string) {
+        System.out.println(string);
+    }
+
     public static void yahtzee(Player player) {
         System.out.println("######"+ player.name + "#############");
         System.out.println("########YAHTZEE!!!#############");
         System.out.println("#####################");
+    }
+
+    public static void showScore(Game game) {
+        System.out.println("##-GAME SCORE-##");
+        System.out.println("-----------------");
+        for (var player : game.gameScore.keySet()) {
+            System.out.print(player.name + ": ");
+            System.out.println(game.gameScore.get(player));
+        }
+        System.out.println("-----------------");
+        System.out.println("#################");
     }
 }
