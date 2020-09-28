@@ -1,6 +1,5 @@
 package com.johnmsaylor;
 
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -27,16 +26,6 @@ public class Dice {
             Console.showDice(this);
         }
     }
-
-    public void rollFirst() {
-        dice[0].roll();
-    }
-
-    public void rollOne(int di) {
-        di--;
-        dice[di].roll();
-    }
-
 
     public void roll(List<Integer> which) throws InterruptedException {
         if (which.get(0) == 0) return;
